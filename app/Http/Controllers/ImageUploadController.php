@@ -16,14 +16,20 @@ class ImageUploadController extends Controller
     public function imageUploadPost(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => ['required',
+            'image',
+            'mimes:jpg,png,jpeg,gif,svg',
+            'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'max:2048'],
         ]);
+
+
     
         $imageName = time().'.'.$request->image->extension();  
      
-        // $request->image->move(public_path('images'), $imageName);
+         $request->image->move(public_path('images'), $imageName);
 
-        $request->image->storeAs('images', $imageName);
+        // $request->image->storeAs('images', $imageName);
   
         /* Store $imageName name in DATABASE from HERE */
     
