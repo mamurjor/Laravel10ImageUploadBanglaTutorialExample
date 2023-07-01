@@ -19,7 +19,7 @@
         </div>
         <img src="images/{{ Session::get('image') }}">
         @endif
-    
+        <img src="{{ asset('/images/1688236565.png') }}" alt="" title="">
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> There were some problems with your input.
